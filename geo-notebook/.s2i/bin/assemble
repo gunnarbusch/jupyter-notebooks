@@ -23,7 +23,7 @@ pip install 'mod_wsgi==4.6.2'
 # Install base packages needed for running Jupyter Notebooks. 
 
 pip install -r /tmp/src/requirements.txt
-conda install -y numpy gdal 
+conda install -y numpy gdal scikit-image
 conda install --quiet --yes \
     'r-base=3.4.1' \
     'r-irkernel=0.8*' \

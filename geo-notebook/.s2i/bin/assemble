@@ -6,22 +6,19 @@ set -eo pipefail
 # INFO: Install everything that's required for Jupyter notebooks here.
 ########################################################################
 
-# GDAL
-yum groupinstall "Development Tools"
-yum install wget
-wget http://s3.amazonaws.com/etc-data.koordinates.com/gdal-travisci/install-libkml-r864-64bit.tar.gz
-tar xzf install-libkml-r864-64bit.tar.gz
-cp -r install-libkml/include/* /usr/local/include
-cp -r install-libkml/lib/* /usr/local/lib
-ldconfig
+wget -nv https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
+chmod u+x Miniconda-latest-Linux-x86_64.sh
+./Miniconda-latest-Linux-x86_64.sh -b -f
 
-wget http://download.osgeo.org/gdal/2.2.3/gdal-2.2.3.tar.gz
-tar xzf gdal-2.2.3.tar.gz
-cd gdal-2.2.3
+cp .bashrc .bashrc-miniconda.bak
+echo "
+# added by Miniconda 3.10.1 installer
+export PATH=\"/home/guyrap/miniconda/bin:\$PATH\"
+" >> ~/.bashrc
 
-./configure --with-libkml 
-make
-make install
+source ~/.bashrc
+
+conda install -y numpy
 
 # Ensure we are using the latest pip and wheel packages.
 

@@ -6,17 +6,9 @@ set -eo pipefail
 # INFO: Install everything that's required for Jupyter notebooks here.
 ########################################################################
 
-wget -nv https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
-chmod u+x Miniconda-latest-Linux-x86_64.sh
-./Miniconda-latest-Linux-x86_64.sh -b -f
-
-cp .bashrc .bashrc-miniconda.bak
-echo "
-# added by Miniconda 3.10.1 installer
-export PATH=\"/home/guyrap/miniconda/bin:\$PATH\"
-" >> ~/.bashrc
-
-source ~/.bashrc
+wget -nv https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod u+x Miniconda3-latest-Linux-x86_64.sh
+./Miniconda3-latest-Linux-x86_64.sh -b -f
 
 conda install -y numpy
 

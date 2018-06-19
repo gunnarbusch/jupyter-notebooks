@@ -6,9 +6,9 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "s2i-minimal-notebook",
+                "name": "geo-notebook",
                 "labels": {
-                    "build": "s2i-minimal-notebook"
+                    "build": "s2i-geo-notebook"
                 }
             },
             "spec": {
@@ -21,9 +21,9 @@
             "kind": "BuildConfig",
             "apiVersion": "v1",
             "metadata": {
-                "name": "s2i-minimal-notebook",
+                "name": "s2i-geo-notebook",
                 "labels": {
-                    "build": "s2i-minimal-notebook"
+                    "build": "s2i-geo-notebook"
                 }
             },
             "spec": {
@@ -38,9 +38,9 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/jupyter-on-openshift/jupyter-notebooks"
+                        "uri": "https://github.com/gunnarbusch/jupyter-notebooks"
                     },
-                    "contextDir": "minimal-notebook"
+                    "contextDir": "geo-notebook"
                 },
                 "strategy": {
                     "type": "Source",
@@ -61,130 +61,6 @@
                 "resources": {
                     "limits": {
                         "memory": "1Gi"
-                    }
-                }
-            }
-        },
-        {
-            "kind": "ImageStream",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "s2i-scipy-notebook",
-                "labels": {
-                    "build": "s2i-scipy-notebook"
-                }
-            },
-            "spec": {
-                "lookupPolicy": {
-                    "local": true
-                }
-            }
-        },
-        {
-            "kind": "BuildConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "s2i-scipy-notebook",
-                "labels": {
-                    "build": "s2i-scipy-notebook"
-                }
-            },
-            "spec": {
-                "triggers": [
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange"
-                    }
-                ],
-                "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "https://github.com/jupyter-on-openshift/jupyter-notebooks"
-                    },
-                    "contextDir": "scipy-notebook"
-                },
-                "strategy": {
-                    "type": "Source",
-                    "sourceStrategy": {
-                        "from": {
-                            "kind": "ImageStreamTag",
-                            "name": "s2i-minimal-notebook:3.5"
-                        }
-                    }
-                },
-                "output": {
-                    "to": {
-                        "kind": "ImageStreamTag",
-                        "name": "s2i-scipy-notebook:3.5"
-                    }
-                },
-                "resources": {
-                    "limits": {
-                        "memory": "1Gi"
-                    }
-                }
-            }
-        },
-        {
-            "kind": "ImageStream",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "s2i-tensorflow-notebook",
-                "labels": {
-                    "build": "s2i-tensorflow-notebook"
-                }
-            },
-            "spec": {
-                "lookupPolicy": {
-                    "local": true
-                }
-            }
-        },
-        {
-            "kind": "BuildConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "s2i-tensorflow-notebook",
-                "labels": {
-                    "build": "s2i-tensorflow-notebook"
-                }
-            },
-            "spec": {
-                "triggers": [
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange"
-                    }
-                ],
-                "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "https://github.com/jupyter-on-openshift/jupyter-notebooks"
-                    },
-                    "contextDir": "tensorflow-notebook"
-                },
-                "strategy": {
-                    "type": "Source",
-                    "sourceStrategy": {
-                        "from": {
-                            "kind": "ImageStreamTag",
-                            "name": "s2i-minimal-notebook:3.5"
-                        }
-                    }
-                },
-                "output": {
-                    "to": {
-                        "kind": "ImageStreamTag",
-                        "name": "s2i-tensorflow-notebook:3.5"
-                    }
-                },
-                "resources": {
-                    "limits": {
-                        "memory": "512Mi"
                     }
                 }
             }

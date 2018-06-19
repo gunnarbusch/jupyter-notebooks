@@ -1,5 +1,5 @@
-Jupyter Notebooks for OpenShift
-===============================
+Jupyter Geo / R Notebook for OpenShift with Tensorflow, GDAL, NumPy, ...
+===========================================================================
 
 This repository contains software to make it easier to use Jupyter Notebooks on OpenShift.
 
